@@ -13,8 +13,7 @@ ADD package.json /tmp/
 RUN cd /tmp && yarn
 
 RUN mkdir -pv /docker/shop
-RUN mkdir -p /docker/shop/alice && cd /docker/shop/alice && ln -s
-/tmp/node_modules
+RUN mkdir -p /docker/shop/alice && cd /docker/shop/alice && ln -s /tmp/node_modules
 
 COPY . /docker/shop/alice
 
