@@ -9,8 +9,7 @@ RUN apt-get clean && \
     apt-get update && \
     apt-get install -y --force-yes php7.0 rsync
 
-RUN npm install clean-css-cli@4.1.10 uglify-js@2.8.29 -g
-RUN npm install --save-dev babel-cli
+RUN npm install clean-css-cli@4.1.10 uglify-js@2.8.29 babel-cli -g
 
 RUN mkdir -pv /docker/shop
 
