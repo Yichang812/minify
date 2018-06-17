@@ -1,4 +1,4 @@
-FROM node:8.11
+FROM node
 RUN echo 'deb http://ftp.sg.debian.org/debian/ jessie main' > /etc/apt/sources.list && \
     echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list && \
     echo 'deb-src http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list
@@ -9,13 +9,10 @@ RUN apt-get clean && \
     apt-get update && \
     apt-get install -y --force-yes php7.0 rsync
 
-ADD package.json /tmp/
-RUN cd /tmp && yarn
+RUN npm install clean-css-cli@4.1.10 uglify-js@2.8.29 -g
+RUN npm install --save-dev babel-cli
 
 RUN mkdir -pv /docker/shop
-RUN mkdir -p /docker/shop/alice && cd /docker/shop/alice && ln -s /tmp/node_modules
-
-COPY . /docker/shop/alice
 
 CMD ["rsync", "/docker/shop/" , "/shop"]
 
